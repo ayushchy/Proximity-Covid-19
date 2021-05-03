@@ -13,6 +13,6 @@ $ pip3 install -r requirements.txt
 ```
 ## Run: 
 ```
-python3 Run.py -i mylib/videos/trial3.mp4
+$ python3 Run.py -i mylib/videos/trial3.mp4
 ```
-### Here you go...
+*** Here you go... ***
