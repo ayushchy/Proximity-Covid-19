@@ -1,0 +1,6 @@
+imutils
+opencv-python
+numpy
+argparse
+scipy
+
