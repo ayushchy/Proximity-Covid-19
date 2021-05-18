@@ -121,23 +121,6 @@ while True:
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 		cv2.circle(frame, (cX, cY), 5, color, 2)
 
-	# draw some of the parameters
-	'''Safe_Distance = "Safe distance: >{} px".format(config.MAX_DISTANCE)
-	cv2.putText(frame, Safe_Distance, (470, frame.shape[0] - 25),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.60, (255, 0, 0), 2)
-	Threshold = "Threshold limit: {}".format(config.Threshold)
-	cv2.putText(frame, Threshold, (470, frame.shape[0] - 50),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.60, (255, 0, 0), 2)
-
-    # draw the total number of social distancing violations on the output frame
-	text = "Total serious violations: {}".format(len(serious))
-	cv2.putText(frame, text, (10, frame.shape[0] - 55),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.70, (0, 0, 255), 2)
-
-	text1 = "Total abnormal violations: {}".format(len(abnormal))
-	cv2.putText(frame, text1, (10, frame.shape[0] - 25),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.70, (0, 255, 255), 2)'''
-
 #------------------------------Alert function----------------------------------#
 	if len(serious) >= config.Threshold:
 		cv2.putText(frame, "-ALERT: Violations over limit-", (10, frame.shape[0] - 80),
