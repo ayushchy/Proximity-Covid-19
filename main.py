@@ -37,8 +37,8 @@ if config.USE_GPU:
 	net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 
 # determine only the *output* layer names that we need from YOLO
-ln = net.getLayerNames()
-ln = [ln[i[0] - 1] for i in net.getUnconnectedOutLayers()]
+layer = net.getLayerNames()
+layer = [layer[i[0] - 1] for i in net.getUnconnectedOutLayers()]
 
 # if a video path was not supplied, grab a reference to the camera
 if not args.get("input", False):
@@ -73,7 +73,7 @@ while True:
 
 	# resize the frame and then detect people (and only people) in it
 	frame = imutils.resize(frame, width=700)
-	results = detect_people(frame, net, ln,
+	results = detect_people(frame, net, layer,
 		personIdx=LABELS.index("person"))
 
 	# initialize the set of indexes that violate the max/min social distance limits
