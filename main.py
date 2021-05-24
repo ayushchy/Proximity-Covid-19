@@ -37,8 +37,8 @@ if config.USE_GPU:
 	net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 
 # determine only the *output* layer names that we need from YOLO
-ln = net.getLayerNames()
-ln = [ln[i[0] - 1] for i in net.getUnconnectedOutLayers()]
+layer = net.getLayerNames()
+layer = [layer[i[0] - 1] for i in net.getUnconnectedOutLayers()]
 
 # if a video path was not supplied, grab a reference to the camera
 if not args.get("input", False):
@@ -73,7 +73,7 @@ while True:
 
 	# resize the frame and then detect people (and only people) in it
 	frame = imutils.resize(frame, width=700)
-	results = detect_people(frame, net, ln,
+	results = detect_people(frame, net, layer,
 		personIdx=LABELS.index("person"))
 
 	# initialize the set of indexes that violate the max/min social distance limits
@@ -120,23 +120,6 @@ while True:
 		# centroid coordinates of the person,
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 		cv2.circle(frame, (cX, cY), 5, color, 2)
-
-	# draw some of the parameters
-	'''Safe_Distance = "Safe distance: >{} px".format(config.MAX_DISTANCE)
-	cv2.putText(frame, Safe_Distance, (470, frame.shape[0] - 25),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.60, (255, 0, 0), 2)
-	Threshold = "Threshold limit: {}".format(config.Threshold)
-	cv2.putText(frame, Threshold, (470, frame.shape[0] - 50),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.60, (255, 0, 0), 2)
-
-    # draw the total number of social distancing violations on the output frame
-	text = "Total serious violations: {}".format(len(serious))
-	cv2.putText(frame, text, (10, frame.shape[0] - 55),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.70, (0, 0, 255), 2)
-
-	text1 = "Total abnormal violations: {}".format(len(abnormal))
-	cv2.putText(frame, text1, (10, frame.shape[0] - 25),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.70, (0, 255, 255), 2)'''
 
 #------------------------------Alert function----------------------------------#
 	if len(serious) >= config.Threshold:
