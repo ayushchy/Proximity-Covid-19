@@ -16,7 +16,7 @@ cd Proximity-Covid-19
 ## Execution of program
 
 ```bash
-git clone pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 python3 main.py -i mylib/videos/trial3.mp4
 ```
 
